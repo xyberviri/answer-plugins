@@ -5,10 +5,10 @@ This plugin filters Answer API responses so users only see answers they created.
 ## Behavior
 
 - `GET /answer/api/v1/answer/info`
-  - Returns the answer only when the requesting user is the author.
+  - Returns the answer only when the requesting user is the answer author or the question author.
   - Otherwise responds with `403` and an empty `data` payload.
 - `GET /answer/api/v1/answer/page`
-  - Filters the response list to contain only answers created by the current user.
+  - Filters the response list to contain only answers created by the current user or answers attached to the current user's questions.
 
 ## Configuration
 

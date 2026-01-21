@@ -216,12 +216,13 @@ func filterAnswerInfo(envelope responseEnvelope, userID string) ([]byte, int, bo
 		return nil, 0, false
 	}
 
-	ownerID := extractOwnerID(payload)
-	if ownerID == "" {
+	answerOwnerID := extractAnswerOwnerID(payload)
+	questionOwnerID := extractQuestionOwnerID(payload)
+	if answerOwnerID == "" && questionOwnerID == "" {
 		return nil, 0, false
 	}
 
-	if ownerID == userID {
+	if answerOwnerID == userID || questionOwnerID == userID {
 		return nil, 0, false
 	}
 
@@ -255,11 +256,12 @@ func filterAnswerList(envelope responseEnvelope, userID string) ([]byte, int, bo
 		if !ok {
 			continue
 		}
-		ownerID := extractOwnerID(entry)
-		if ownerID == "" {
+		answerOwnerID := extractAnswerOwnerID(entry)
+		questionOwnerID := extractQuestionOwnerID(entry)
+		if answerOwnerID == "" && questionOwnerID == "" {
 			continue
 		}
-		if ownerID == userID {
+		if answerOwnerID == userID || questionOwnerID == userID {
 			filtered = append(filtered, entry)
 		}
 	}
@@ -279,13 +281,25 @@ func filterAnswerList(envelope responseEnvelope, userID string) ([]byte, int, bo
 	return body, 0, true
 }
 
-func extractOwnerID(payload map[string]any) string {
+func extractAnswerOwnerID(payload map[string]any) string {
 	info, ok := payload["info"].(map[string]any)
 	if ok {
 		return extractUserIDFromInfo(info)
 	}
 
 	return extractUserIDFromInfo(payload)
+}
+
+func extractQuestionOwnerID(payload map[string]any) string {
+	question, ok := payload["question"].(map[string]any)
+	if ok {
+		return extractUserIDFromInfo(question)
+	}
+	questionInfo, ok := payload["question_info"].(map[string]any)
+	if ok {
+		return extractUserIDFromInfo(questionInfo)
+	}
+	return ""
 }
 
 func extractUserIDFromInfo(info map[string]any) string {
