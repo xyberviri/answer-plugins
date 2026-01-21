@@ -1,0 +1,4 @@
+plugin.answer_private.backend.info.name: "Answer Privacy"
+plugin.answer_private.backend.info.description: "Only allow users to view answers they created."
+plugin.answer_private.backend.config.enabled.label: "Enable answer privacy"
+plugin.answer_private.backend.config.enabled.description: "Filter answer list and detail responses so only the current user's answers are visible."

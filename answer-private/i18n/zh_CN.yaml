@@ -1,0 +1,4 @@
+plugin.answer_private.backend.info.name: "答案隐私"
+plugin.answer_private.backend.info.description: "仅允许用户查看自己创建的回答。"
+plugin.answer_private.backend.config.enabled.label: "启用答案隐私"
+plugin.answer_private.backend.config.enabled.description: "过滤答案列表和详情响应，只显示当前用户的回答。"
