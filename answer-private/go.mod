@@ -1,4 +1,4 @@
-module github.com/apache/answer-plugins/answer-private
+module github.com/xyberviri/answer-plugins/answer-private
 
 go 1.23.0
 
