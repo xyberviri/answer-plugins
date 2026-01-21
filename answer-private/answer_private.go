@@ -26,7 +26,7 @@ import (
 	"net/http"
 	"reflect"
 
-	"github.com/apache/answer-plugins/answer-private/i18n"
+	"github.com/xyberviri/answer-plugins/answer-private/i18n"
 	"github.com/apache/answer-plugins/util"
 	"github.com/apache/answer/plugin"
 	"github.com/gin-gonic/gin"
